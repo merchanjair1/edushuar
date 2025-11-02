@@ -1,0 +1,323 @@
+<!-- Contenedor principal con padding y ancho máximo -->
+<div class="contribution-container mx-auto max-w-4xl p-4 sm:p-6 md:p-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 min-h-screen">
+
+  <!-- Encabezado -->
+  <header class="text-center mb-8 relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-100/40 to-transparent blur-3xl"></div>
+    <div class="relative">
+      <div class="flex justify-center items-center gap-3 md:gap-4 mb-2">
+        <i class="fas fa-feather-alt text-2xl md:text-3xl text-amber-600"></i>
+        <h1 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent">Comparte tu Sabiduría</h1>
+        <i class="fas fa-tint text-2xl md:text-3xl text-orange-600"></i>
+      </div>
+      <p class="text-md md:text-lg text-gray-700 font-medium">Ayúdanos a preservar y enriquecer la cultura Shuar para las futuras generaciones.</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-4">
+        <div class="inline-flex items-center bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full shadow-lg border border-amber-200">
+          <i class="fas fa-database mr-2"></i>+1,200 Contribuciones
+        </div>
+        <div class="inline-flex items-center bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 text-sm font-semibold px-4 py-2 rounded-full shadow-lg border border-orange-200">
+          <i class="fas fa-users mr-2"></i>+350 Contribuyentes
+        </div>
+      </div>
+      <div class="w-32 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full mt-4"></div>
+    </div>
+  </header>
+
+  <!-- Pestañas -->
+  <div class="mb-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-100/50 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-orange-50/30 to-amber-50/30"></div>
+    <nav class="relative p-2 flex space-x-2" aria-label="Tabs">
+      <button (click)="activeTab = 'form'"
+        [ngClass]="{'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg': activeTab === 'form', 'text-gray-600 hover:text-amber-700 hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50': activeTab !== 'form'}"
+        class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-105">
+        <i class="fas fa-upload mr-2"></i>Subir Contenido
+      </button>
+      <button (click)="activeTab = 'guidelines'"
+        [ngClass]="{'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg': activeTab === 'guidelines', 'text-gray-600 hover:text-amber-700 hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50': activeTab !== 'guidelines'}"
+        class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-105">
+        <i class="fas fa-clipboard-list mr-2"></i>Pautas de Contribución
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mensaje de Éxito -->
+  @if (successMessage) {
+    <div class="bg-gradient-to-r from-green-100 to-emerald-100 border-l-4 border-green-500 text-green-700 p-4 rounded-xl mb-6 shadow-lg border border-green-200" role="alert">
+      <p class="font-bold flex items-center"><i class="fas fa-check-circle mr-2"></i>¡Éxito!</p>
+      <p>{{ successMessage }}</p>
+    </div>
+  }
+
+  <!-- Contenido de la Pestaña: Formulario -->
+  <div [hidden]="activeTab !== 'form'">
+    <form [formGroup]="contributionForm" (ngSubmit)="onSubmit()" class="space-y-8">
+
+      <!-- Sección 1: Tipo y Archivo -->
+      <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-orange-50/20 to-amber-50/20"></div>
+        <div class="relative space-y-4">
+          <label class="block text-lg font-bold text-gray-800 flex items-center">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-lg mr-3 shadow-lg">
+              <span class="text-white font-bold">1</span>
+            </div>
+            Selecciona el tipo y sube tu archivo
+          </label>
+          <div class="grid grid-cols-4 gap-4">
+            @for (type of contentTypes; track type) {
+              <button type="button" (click)="selectContentType(type.id)"
+                [ngClass]="{'bg-gradient-to-r from-amber-100 to-orange-100 border-amber-500 ring-2 ring-amber-200 shadow-lg': contributionForm.get('contentType')?.value === type.id, 'bg-white/80 hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 border-orange-200': contributionForm.get('contentType')?.value !== type.id}"
+                class="group flex flex-col items-center justify-center p-6 border rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i class="{{type.icon}} text-3xl mb-2 group-hover:scale-110 transition-transform" [ngClass]="{'text-amber-600': contributionForm.get('contentType')?.value === type.id, 'text-orange-500': contributionForm.get('contentType')?.value !== type.id}"></i>
+                <span class="text-sm font-semibold" [ngClass]="{'text-amber-700': contributionForm.get('contentType')?.value === type.id, 'text-gray-700': contributionForm.get('contentType')?.value !== type.id}">{{type.name}}</span>
+              </button>
+            }
+          </div>
+
+          <!-- Opciones para Video -->
+          @if (contributionForm.get('contentType')?.value === 'video') {
+            <div class="mt-4 p-4 bg-amber-50/50 rounded-xl border border-amber-200">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Método de envío del video:</label>
+              <div class="flex items-center space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" formControlName="videoInputMethod" value="upload" class="h-4 w-4 text-amber-600 border-gray-300 focus:ring-amber-500">
+                  <span class="ml-2 text-sm text-gray-700">Subir archivo</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" formControlName="videoInputMethod" value="url" class="h-4 w-4 text-amber-600 border-gray-300 focus:ring-amber-500">
+                  <span class="ml-2 text-sm text-gray-700">Usar URL</span>
+                </label>
+              </div>
+            </div>
+          }
+
+          <!-- Campo de subida de archivo o URL -->
+          <div class="mt-4">
+            @if (contributionForm.get('contentType')?.value !== 'video' || contributionForm.get('videoInputMethod')?.value === 'upload') {
+              <input id="file-upload" type="file" (change)="onFileChange($event)" [accept]="fileAcceptTypes"
+                class="block w-full text-sm text-gray-700 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-gradient-to-r file:from-amber-100 file:to-orange-100 file:text-amber-700 hover:file:from-amber-200 hover:file:to-orange-200 file:shadow-lg file:transition-all file:duration-300"/>
+              @if (contributionForm.get('file')?.invalid && contributionForm.get('file')?.touched) {
+                <p class="mt-2 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>Se requiere un archivo.</p>
+              }
+            } @else {
+              <input id="videoUrl" type="url" formControlName="videoUrl" placeholder="https://ejemplo.com/video.mp4"
+                [ngClass]="{'border-red-500': contributionForm.get('videoUrl')?.invalid && contributionForm.get('videoUrl')?.touched}"
+                class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300"/>
+              @if (contributionForm.get('videoUrl')?.invalid && contributionForm.get('videoUrl')?.touched) {
+                <p class="mt-2 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>Se requiere una URL de video válida.</p>
+              }
+            }
+
+            @if (isUploading && uploadProgress > 0) {
+              <div class="mt-3 w-full bg-orange-100 rounded-full h-3 shadow-inner">
+                <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 h-3 rounded-full transition-all duration-300 shadow-lg" [style.width.%]="uploadProgress">
+                  <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 2: Detalles del Contenido -->
+      <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-amber-50/20 to-orange-50/20"></div>
+        <div class="relative space-y-4">
+          <label class="block text-lg font-bold text-gray-800 flex items-center">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-lg mr-3 shadow-lg">
+              <span class="text-white font-bold">2</span>
+            </div>
+            Describe tu contribución
+          </label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Título -->
+            <div>
+              <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">Título (Español)</label>
+              <input id="title" type="text" formControlName="title"
+                [ngClass]="{'border-red-500': contributionForm.get('title')?.invalid && contributionForm.get('title')?.touched}"
+                class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                @if (contributionForm.get('title')?.invalid && contributionForm.get('title')?.touched) {
+                  <p class="mt-2 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>El título es requerido.</p>
+                }
+              </div>
+              <!-- Título Shuar -->
+              <div>
+                <label for="shuarTitle" class="block text-sm font-semibold text-gray-700 mb-2">Título (Shuar) <span class="text-amber-600 font-normal">(Opcional)</span></label>
+                <input id="shuarTitle" type="text" formControlName="shuarTitle"
+                  class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                </div>
+                <!-- Descripción -->
+                <div class="md:col-span-2">
+                  <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">Descripción (Español)</label>
+                  <textarea id="description" formControlName="description" rows="4"
+                    [ngClass]="{'border-red-500': contributionForm.get('description')?.invalid && contributionForm.get('description')?.touched}"
+                  class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300"></textarea>
+                  @if (contributionForm.get('description')?.invalid && contributionForm.get('description')?.touched) {
+                    <p class="mt-2 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>La descripción es requerida.</p>
+                  }
+                </div>
+                <!-- Descripción Shuar -->
+                <div class="md:col-span-2">
+                  <label for="shuarDescription" class="block text-sm font-semibold text-gray-700 mb-2">Descripción (Shuar) <span class="text-amber-600 font-normal">(Opcional)</span></label>
+                  <textarea id="shuarDescription" formControlName="shuarDescription" rows="4"
+                  class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección 3: Clasificación -->
+          <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-50/20 to-amber-50/20"></div>
+            <div class="relative space-y-4">
+              <label class="block text-lg font-bold text-gray-800 flex items-center">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-lg mr-3 shadow-lg">
+                  <span class="text-white font-bold">3</span>
+                </div>
+                Clasifica tu contribución
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Categoría -->
+                <div>
+                  <label for="category" class="block text-sm font-semibold text-gray-700 mb-2">Categoría</label>
+                  <select id="category" formControlName="category"
+                    [ngClass]="{'border-red-500': contributionForm.get('category')?.invalid && contributionForm.get('category')?.touched}"
+                    class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                    <option value="">Selecciona una categoría</option>
+                    @for (category of categories; track category) {
+                      <option [value]="category.id">{{category.name}}</option>
+                    }
+                  </select>
+                  @if (contributionForm.get('category')?.invalid && contributionForm.get('category')?.touched) {
+                    <p class="mt-2 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>La categoría es requerida.</p>
+                  }
+                </div>
+                <!-- Etiquetas -->
+                <div>
+                  <label for="tags" class="block text-sm font-semibold text-gray-700 mb-2">Etiquetas (separadas por comas) <span class="text-amber-600 font-normal">(Opcional)</span></label>
+                  <input id="tags" type="text" formControlName="tags"
+                    class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sección 4: Información Adicional -->
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-amber-50/20 to-orange-50/20"></div>
+              <div class="relative space-y-4">
+                <label class="block text-lg font-bold text-gray-800 flex items-center">
+                  <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-lg mr-3 shadow-lg">
+                    <span class="text-white font-bold">4</span>
+                  </div>
+                  Información Adicional <span class="text-amber-600 font-normal">(Opcional)</span>
+                </label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Contribuidor -->
+                  <div>
+                    <label for="contributor" class="block text-sm font-semibold text-gray-700 mb-2">Nombre del Contribuidor</label>
+                    <input id="contributor" type="text" formControlName="contributor"
+                      class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                    </div>
+                    <!-- Ubicación -->
+                    <div>
+                      <label for="location" class="block text-sm font-semibold text-gray-700 mb-2">Ubicación (Comunidad/Provincia)</label>
+                      <input id="location" type="text" formControlName="location"
+                        class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                      </div>
+                      <!-- Importancia Cultural -->
+                      <div class="md:col-span-2">
+                        <label for="culturalImportance" class="block text-sm font-semibold text-gray-700 mb-2">Importancia Cultural</label>
+                        <textarea id="culturalImportance" formControlName="culturalImportance" rows="3"
+                        class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300"></textarea>
+                      </div>
+                      <!-- Restricción de Edad -->
+                      <div>
+                        <label for="ageRestriction" class="block text-sm font-semibold text-gray-700 mb-2">Restricción de Edad</label>
+                        <select id="ageRestriction" formControlName="ageRestriction"
+                          class="block w-full px-4 py-3 bg-white/90 border border-orange-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 sm:text-sm transition-all duration-300">
+                          <option value="all">Todas las edades</option>
+                          <option value="child">Niños</option>
+                          <option value="youth">Jóvenes</option>
+                          <option value="adult">Adultos</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sección 5: Permisos y Respeto -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-r from-orange-50/20 to-amber-50/20"></div>
+                  <div class="relative space-y-4">
+                    <label class="block text-lg font-bold text-gray-800 flex items-center">
+                      <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-lg mr-3 shadow-lg">
+                        <span class="text-white font-bold">5</span>
+                      </div>
+                      Permisos y Respeto Cultural
+                    </label>
+                    <div class="space-y-3">
+                      <div class="flex items-start">
+                        <input id="permissions" type="checkbox" formControlName="permissions"
+                          [ngClass]="{'border-red-500': contributionForm.get('permissions')?.invalid && contributionForm.get('permissions')?.touched}"
+                          class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                        <label for="permissions" class="ml-3 text-sm text-gray-700">
+                          <span class="font-semibold">Otorgo permiso</span> para que mi contribución sea utilizada y compartida con fines educativos y culturales por EduShuar.
+                        </label>
+                      </div>
+                      @if (contributionForm.get('permissions')?.invalid && contributionForm.get('permissions')?.touched) {
+                        <p class="mt-1 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>Debes otorgar permiso para continuar.</p>
+                      }
+
+                      <div class="flex items-start">
+                        <input id="respect" type="checkbox" formControlName="respect"
+                          [ngClass]="{'border-red-500': contributionForm.get('respect')?.invalid && contributionForm.get('respect')?.touched}"
+                          class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                        <label for="respect" class="ml-3 text-sm text-gray-700">
+                          <span class="font-semibold">Confirmo</span> que mi contribución respeta las tradiciones, costumbres y la propiedad intelectual de la cultura Shuar.
+                        </label>
+                      </div>
+                      @if (contributionForm.get('respect')?.invalid && contributionForm.get('respect')?.touched) {
+                        <p class="mt-1 text-xs text-red-600 flex items-center"><i class="fas fa-exclamation-triangle mr-1"></i>Debes confirmar el respeto cultural.</p>
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="flex justify-end space-x-4 mt-8">
+                  <button type="button" (click)="onCancel()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-semibold shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300 transform hover:-translate-y-0.5">
+                    Cancelar
+                  </button>
+                  <button type="submit" [disabled]="contributionForm.invalid || isUploading"
+                    class="px-8 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl shadow-lg hover:from-amber-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                    @if (!isUploading) {
+                      <span>Enviar Contribución</span>
+                    }
+                    @if (isUploading) {
+                      <span>Subiendo... ({{ uploadProgress }}%)</span>
+                    }
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Contenido de la Pestaña: Pautas -->
+            <div [hidden]="activeTab !== 'guidelines'" class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-orange-100/50 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-amber-50/20 to-orange-50/20"></div>
+              <div class="relative text-gray-700 space-y-6">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-info-circle mr-3 text-amber-600"></i>Pautas para Contribuir</h2>
+                <p>Para asegurar la calidad y el respeto cultural de todas las contribuciones, por favor, sigue estas pautas:</p>
+                <ul class="list-disc list-inside space-y-2 ml-4">
+                  <li><span class="font-semibold">Autenticidad:</span> Asegúrate de que el contenido sea auténtico y represente fielmente la cultura Shuar.</li>
+                  <li><span class="font-semibold">Calidad:</span> Proporciona archivos de audio, video o imagen de la mejor calidad posible.</li>
+                  <li><span class="font-semibold">Permisos:</span> Solo sube contenido del que tengas los derechos o el permiso explícito para compartir.</li>
+                  <li><span class="font-semibold">Respeto:</span> El contenido debe ser respetuoso y apropiado para todas las edades. Evita material ofensivo o que pueda ser malinterpretado.</li>
+                  <li><span class="font-semibold">Descripción Detallada:</span> Incluye descripciones claras y precisas en español y, si es posible, en Shuar.</li>
+                  <li><span class="font-semibold">Categorización:</span> Selecciona la categoría más adecuada para tu contribución.</li>
+                  <li><span class="font-semibold">Etiquetas:</span> Usa etiquetas relevantes para facilitar la búsqueda y organización.</li>
+                </ul>
+                <p class="mt-6 text-sm italic text-gray-600">Tu contribución será revisada por nuestro equipo de moderadores para asegurar que cumple con todas las pautas antes de ser publicada.</p>
+              </div>
+            </div>
+
+          </div>

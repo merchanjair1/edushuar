@@ -1,0 +1,87 @@
+<!-- Header armonizado responsivo -->
+<header class="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 shadow-lg">
+  <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between p-4 space-y-4 lg:space-y-0">
+    <!-- Logo y título -->
+    <a routerLink="/dashboard" class="flex items-center flex-shrink-0">
+      <img src="img/logo_editado.png" alt="EduShuar Logo" class="h-10 sm:h-12 w-auto mr-2">
+      <span class="text-xl sm:text-2xl font-bold text-white drop-shadow-sm">EduShuar</span>
+    </a>
+    
+    <!-- Navegación principal -->
+    <nav class="flex-grow flex justify-center w-full lg:w-auto">
+      <ul class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 lg:space-x-6 lg:gap-0">
+        <li class="flex flex-col items-center">
+          <a routerLink="/dictionary" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-book text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Diccionario</span>
+          </a>
+        </li>
+        <li class="flex flex-col items-center">
+          <a routerLink="/stories" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-book-open text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Cuentos</span>
+          </a>
+        </li>
+        <li class="flex flex-col items-center">
+          <a routerLink="/lecciones" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-graduation-cap text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Lecciones</span>
+          </a>
+        </li>
+        <li class="flex flex-col items-center">
+          <a routerLink="/games" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-gamepad text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Juegos</span>
+          </a>
+        </li>
+        <li class="flex flex-col items-center">
+          <a routerLink="/contribuir" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-hand-holding-heart text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Contribuir</span>
+          </a>
+        </li>
+        <li class="flex flex-col items-center">
+          <a routerLink="/biblioteca" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+            class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+            <i class="fas fa-archive text-lg sm:text-xl mb-1"></i>
+            <span class="text-xs sm:text-sm">Biblioteca</span>
+          </a>
+        </li>
+        @if (userRole === 'admin') {
+          <li class="flex flex-col items-center">
+            <a routerLink="/moderation" routerLinkActive="text-yellow-200 font-bold bg-white/20 px-2 sm:px-3 py-1 rounded-lg"
+              class="text-white/90 hover:text-yellow-200 transition-all duration-300 hover:bg-white/10 px-2 sm:px-3 py-1 rounded-lg text-center">
+              <i class="fas fa-user-shield text-lg sm:text-xl mb-1"></i>
+              <span class="text-xs sm:text-sm">Moderación</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+    
+    <!-- Sección de usuario/login -->
+    <div class="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
+      @if (user$ | async; as user) {
+        <div class="relative">
+          <a routerLink="/profile" class="flex items-center focus:outline-none bg-white/10 hover:bg-white/20 px-2 sm:px-4 py-2 rounded-lg transition-all duration-300">
+            <span class="text-white font-semibold mr-2 text-sm sm:text-base hidden sm:inline">{{ user.displayName }}</span>
+            <img src="img/avatar.png" alt="User Avatar" class="h-8 sm:h-10 w-8 sm:w-10 rounded-full mr-1 sm:mr-2 border-2 border-white/30">
+          </a>
+        </div>
+        <div class="px-2 sm:px-4 py-2">
+          <span class="text-white/80 font-medium bg-white/20 px-2 py-1 rounded text-xs sm:text-sm">ES</span>
+        </div>
+      } @else {
+        <a routerLink="/login" class="text-white/90 hover:text-yellow-200 bg-white/10 hover:bg-white/20 px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm sm:text-base">
+          <span class="hidden sm:inline">Iniciar Sesión</span>
+          <span class="sm:hidden">Login</span>
+        </a>
+      }
+    </div>
+  </div>
+</header>

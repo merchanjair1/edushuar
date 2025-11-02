@@ -1,0 +1,210 @@
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-2 sm:p-4 relative overflow-hidden">
+  <!-- Efectos de fondo decorativos -->
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-100/20 to-transparent blur-3xl"></div>
+  <div class="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-amber-200/30 to-orange-200/30 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-gradient-to-br from-orange-200/30 to-amber-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+  <!-- Contenedor principal dividido en dos partes -->
+  <div class="w-full max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-6xl relative">
+    <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-orange-100/50 relative">
+      <!-- Efectos de fondo interno -->
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-50/30 to-orange-50/30"></div>
+      
+      <div class="flex flex-col lg:flex-row min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] relative">
+        <!-- LADO IZQUIERDO - Imagen y Contenido de Bienvenida -->
+        <div class="flex-1 relative overflow-hidden bg-gradient-to-br from-amber-600 via-orange-600 to-amber-700 order-1 lg:order-1">
+          <!-- Patrones decorativos de fondo -->
+          <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-4 left-4 sm:top-10 sm:left-10 w-16 h-16 sm:w-32 sm:h-32 border-2 border-white/30 rounded-full"></div>
+            <div class="absolute top-8 right-8 sm:top-20 sm:right-20 w-12 h-12 sm:w-24 sm:h-24 border border-white/20 rounded-full"></div>
+            <div class="absolute bottom-8 left-8 sm:bottom-20 sm:left-20 w-10 h-10 sm:w-20 sm:h-20 border border-white/20 rounded-full"></div>
+            <div class="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 w-8 h-8 sm:w-16 sm:h-16 border-2 border-white/30 rounded-full"></div>
+          </div>
+          
+          <!-- Efectos de luz -->
+          <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 via-transparent to-black/10"></div>
+          
+          <!-- Contenido principal del lado izquierdo -->
+          <div class="relative z-10 flex flex-col justify-center items-center h-full p-6 sm:p-8 lg:p-12 text-center">
+            <!-- Logo con efectos premium -->
+            <div class="relative mb-4 sm:mb-6 lg:mb-8 group">
+              <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500"></div>
+              <div class="relative bg-white/10 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-full border border-white/20">
+                <img src="img/logo_editado.png" alt="EduShuar Logo" class="h-16 w-16 sm:h-24 sm:w-24 lg:h-32 lg:w-32 rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-500">
+              </div>
+              <!-- Anillo de luz rotante -->
+              <div class="absolute inset-0 border-2 border-white/30 rounded-full animate-spin"></div>
+            </div>
+            
+            <!-- Textos con animaciones -->
+            <div class="space-y-3 sm:space-y-4 lg:space-y-6">
+              <h1 class="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-white mb-3 sm:mb-4 lg:mb-6 leading-tight animate-pulse">
+                <span class="block animate-bounce delay-200">Bienvenido a</span>
+                <span class="block bg-gradient-to-r from-yellow-200 via-white to-yellow-200 bg-clip-text text-transparent animate-pulse delay-500">EduShuar</span>
+              </h1>
+              
+              <p class="text-sm sm:text-lg lg:text-xl text-white/90 leading-relaxed max-w-xs sm:max-w-md animate-pulse delay-700">
+                Inicia sesión para continuar tu aprendizaje de la cultura Shuar
+              </p>
+              
+              <p class="italic text-white/70 text-sm sm:text-base lg:text-lg animate-pulse delay-1000">
+                Preservando la sabiduría ancestral
+              </p>
+              
+              <!-- Decorative elements -->
+              <div class="flex justify-center space-x-2 mt-4 sm:mt-6 lg:mt-8 animate-pulse delay-1000">
+                <div class="w-2 h-2 sm:w-3 sm:h-3 bg-white/40 rounded-full animate-bounce"></div>
+                <div class="w-2 h-2 sm:w-3 sm:h-3 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 sm:w-3 sm:h-3 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+              </div>
+            </div>
+            
+            <!-- Elementos decorativos flotantes -->
+            <div class="absolute bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 transform -translate-x-1/2 hidden sm:block">
+              <div class="w-1 h-8 sm:h-12 lg:h-16 bg-gradient-to-b from-white/60 to-transparent rounded-full"></div>
+              <div class="w-2 h-2 bg-white/60 rounded-full mx-auto mt-2 animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LADO DERECHO - Formulario -->
+        <div class="flex-1 p-4 sm:p-8 lg:p-12 flex items-center justify-center relative order-2 lg:order-2">
+          <div class="w-full max-w-sm sm:max-w-md space-y-4 sm:space-y-6">
+            <!-- Header del formulario -->
+            <div class="text-center mb-4 sm:mb-6 lg:mb-8">
+              <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Iniciar Sesión</h2>
+              <div class="w-12 sm:w-16 h-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full mx-auto"></div>
+            </div>
+
+            <!-- Formulario con diseño mejorado -->
+            <form (ngSubmit)="login()" #loginForm="ngForm" class="space-y-4 sm:space-y-6">
+              <!-- Campo de Email -->
+              <div class="relative group">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  [(ngModel)]="email" 
+                  required 
+                  placeholder="Correo Electrónico"
+                  class="relative w-full px-4 py-3 pl-12 sm:px-6 sm:py-4 sm:pl-14 border-2 rounded-xl sm:rounded-2xl shadow-lg focus:ring-4 focus:ring-amber-200/50 focus:border-amber-500 transition-all duration-300 ease-in-out bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500 text-sm sm:text-base"
+                  [ngClass]="{'border-amber-300 hover:border-amber-400': !loginError, 'border-red-400 hover:border-red-500': loginError}">
+                <div class="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-amber-500 to-orange-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                  <i class="fas fa-envelope text-white text-xs sm:text-sm"></i>
+                </div>
+              </div>
+
+              <!-- Campo de Contraseña -->
+              <div class="relative group">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <input 
+                  [type]="passwordFieldType" 
+                  id="password" 
+                  name="password" 
+                  [(ngModel)]="password" 
+                  required 
+                  minlength="6" 
+                  placeholder="Contraseña"
+                  class="relative w-full px-4 py-3 pl-12 pr-12 sm:px-6 sm:py-4 sm:pl-14 sm:pr-14 border-2 rounded-xl sm:rounded-2xl shadow-lg focus:ring-4 focus:ring-amber-200/50 focus:border-amber-500 transition-all duration-300 ease-in-out bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500 text-sm sm:text-base"
+                  [ngClass]="{'border-amber-300 hover:border-amber-400': !loginError, 'border-red-400 hover:border-red-500': loginError}" 
+                  #passwordInput="ngModel">
+                <div class="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-amber-500 to-orange-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                  <i class="fas fa-lock text-white text-xs sm:text-sm"></i>
+                </div>
+                <button type="button" class="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" (click)="togglePasswordVisibility()">
+                  <i class="fas text-gray-400 hover:text-gray-600 text-xs sm:text-sm"
+                    [ngClass]="{'fa-eye': passwordFieldType === 'password', 'fa-eye-slash': passwordFieldType === 'text'}"></i>
+                </button>
+                
+                <!-- Mensajes de error -->
+                @if (passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)) {
+                  <div class="mt-2 sm:mt-3 p-2 sm:p-3 bg-red-50/80 backdrop-blur-sm border border-red-200 rounded-lg sm:rounded-xl">
+                    <div class="text-red-600 text-xs sm:text-sm font-medium">
+                      @if (passwordInput.errors?.['required']) {
+                        <div class="flex items-center">
+                          <i class="fas fa-exclamation-circle mr-1 sm:mr-2 text-xs"></i>
+                          La contraseña es requerida.
+                        </div>
+                      }
+                      @if (passwordInput.errors?.['minlength']) {
+                        <div class="flex items-center">
+                          <i class="fas fa-exclamation-circle mr-1 sm:mr-2 text-xs"></i>
+                          La contraseña debe tener al menos 6 caracteres.
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <!-- Error de login -->
+              @if (loginError) {
+                <div class="bg-red-50/90 backdrop-blur-sm border-2 border-red-200 text-red-700 px-4 py-3 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg relative" role="alert">
+                  <div class="flex items-start">
+                    <div class="bg-red-500 p-1.5 sm:p-2 rounded-lg sm:rounded-xl mr-2 sm:mr-3">
+                      <i class="fas fa-exclamation-triangle text-white text-xs sm:text-sm"></i>
+                    </div>
+                    <div>
+                      <strong class="font-bold text-xs sm:text-sm">Error:</strong>
+                      <span class="block mt-1 text-xs sm:text-sm">{{ loginError }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- Enlace de contraseña olvidada -->
+              <div class="text-right">
+                <a href="#" class="font-semibold text-amber-700 hover:text-orange-600 transition-colors duration-300 hover:underline decoration-2 underline-offset-4 text-xs sm:text-sm">
+                  ¿Olvidaste tu contraseña?
+                </a>
+              </div>
+
+              <!-- Botón de iniciar sesión -->
+              <button 
+                type="submit" 
+                [disabled]="!loginForm.form.valid"
+                class="group relative w-full px-4 py-3 sm:px-6 sm:py-4 font-bold text-white bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl sm:rounded-2xl shadow-xl hover:from-amber-700 hover:to-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200/50 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden">
+                <!-- Efecto de brillo -->
+                <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="relative flex items-center justify-center gap-2 sm:gap-3">
+                  <i class="fas fa-sign-in-alt text-sm sm:text-lg group-hover:scale-110 transition-transform"></i>
+                  <span class="text-sm sm:text-lg">Iniciar sesión</span>
+                </div>
+              </button>
+            </form>
+
+            <!-- Separador -->
+            <div class="flex items-center justify-between my-4 sm:my-8">
+              <hr class="flex-grow border-gray-300">
+              <span class="px-3 py-1 sm:px-6 sm:py-2 text-gray-500 bg-white/80 rounded-full border border-gray-200 font-medium text-xs sm:text-sm">o</span>
+              <hr class="flex-grow border-gray-300">
+            </div>
+
+            <!-- Botón de Google -->
+            <button 
+              (click)="loginWithGoogle()" 
+              class="group relative w-full px-4 py-3 sm:px-6 sm:py-4 font-bold text-gray-700 bg-white/90 backdrop-blur-sm border-2 border-gray-200 rounded-xl sm:rounded-2xl shadow-lg hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200/50 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl overflow-hidden">
+              <!-- Efecto de brillo -->
+              <div class="absolute inset-0 bg-gradient-to-r from-gray-100/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative flex items-center justify-center gap-2 sm:gap-3">
+                <img src="/img/google.png" alt="Google Logo" class="h-4 w-4 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform">
+                <span class="text-sm sm:text-lg">Iniciar sesión con Google</span>
+              </div>
+            </button>
+
+            <!-- Enlace de registro -->
+            <div class="text-center mt-4 sm:mt-8 p-3 sm:p-4 bg-gradient-to-r from-amber-50/50 to-orange-50/50 rounded-xl sm:rounded-2xl border border-orange-100">
+              <p class="text-gray-700 font-medium text-xs sm:text-sm">
+                ¿No tienes cuenta?
+                <a routerLink="../register" class="font-bold text-amber-700 hover:text-orange-600 transition-colors duration-300 hover:underline decoration-2 underline-offset-4 ml-1 sm:ml-2">
+                  Registrarse
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

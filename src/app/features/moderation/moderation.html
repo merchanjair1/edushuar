@@ -1,0 +1,672 @@
+<div class="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 min-h-screen p-4 md:p-8 font-secondary text-gray-800 relative overflow-hidden">
+  <!-- Elementos decorativos de fondo -->
+  <div class="absolute top-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-br from-orange-200/20 to-amber-200/20 rounded-full blur-3xl -translate-x-32 md:-translate-x-48 -translate-y-32 md:-translate-y-48"></div>
+  <div class="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-br from-amber-200/20 to-yellow-200/20 rounded-full blur-3xl translate-x-32 md:translate-x-48 translate-y-32 md:translate-y-48"></div>
+  <div class="absolute top-1/2 left-1/2 w-48 md:w-64 h-48 md:h-64 bg-gradient-to-br from-orange-100/10 to-amber-100/10 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
+
+  <!-- Header mejorado con efectos -->
+  <header class="text-center mb-8 md:mb-16 relative z-10">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-100/30 to-transparent blur-3xl"></div>
+    <div class="relative">
+      <!-- Icono principal -->
+      <div class="mb-6 md:mb-8 flex justify-center">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full blur-xl opacity-60 animate-pulse"></div>
+          <div class="relative bg-gradient-to-r from-amber-500 to-orange-500 p-4 md:p-6 rounded-full shadow-2xl">
+            <i class="fas fa-shield-alt text-2xl md:text-4xl text-white"></i>
+          </div>
+        </div>
+      </div>
+      
+      <h1 class="text-2xl sm:text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent mb-4 md:mb-6 drop-shadow-lg tracking-tight px-4">
+        Panel de Moderación
+      </h1>
+      
+      <p class="text-lg md:text-2xl text-gray-700 mb-6 md:mb-8 font-medium tracking-wide max-w-2xl mx-auto leading-relaxed px-4">
+        Gestiona las contribuciones de la comunidad con herramientas avanzadas
+      </p>
+      
+      <!-- Estadísticas rápidas -->
+      <div class="flex flex-wrap justify-center gap-3 md:gap-8 mb-6 md:mb-8 px-4">
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg border border-orange-100">
+          <div class="text-lg md:text-2xl font-bold text-amber-600">{{ pendingCount() }}</div>
+          <div class="text-xs md:text-sm text-gray-600">Pendientes</div>
+        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg border border-green-100">
+          <div class="text-lg md:text-2xl font-bold text-emerald-600">{{ approvedCount() }}</div>
+          <div class="text-xs md:text-sm text-gray-600">Aprobadas</div>
+        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg border border-red-100">
+          <div class="text-lg md:text-2xl font-bold text-red-600">{{ rejectedCount() }}</div>
+          <div class="text-xs md:text-sm text-gray-600">Rechazadas</div>
+        </div>
+      </div>
+      
+      <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full shadow-lg"></div>
+    </div>
+  </header>
+
+  <!-- Botones para abrir modales -->
+  <div class="mb-6 md:mb-8 relative z-10 flex flex-wrap justify-center gap-3 md:gap-4 px-4">
+    <button (click)="openFormModal('word')" class="px-4 md:px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+      <i class="fas fa-plus-circle mr-2"></i>
+      <span class="hidden sm:inline">Subir Nueva</span> Palabra
+    </button>
+    <button (click)="openFormModal('content')" class="px-4 md:px-6 py-3 bg-gradient-to-r from-sky-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:from-sky-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+      <i class="fas fa-plus-circle mr-2"></i>
+      <span class="hidden sm:inline">Subir</span> Juego o Lección
+    </button>
+  </div>
+
+  <!-- Modal para formularios MEJORADO -->
+  @if (showFormModal()) {
+    <div class="fixed inset-0 bg-black/80 flex items-start md:items-center justify-center z-50 p-2 md:p-4 backdrop-blur-sm overflow-y-auto">
+      <div class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl my-4 md:my-0 relative flex flex-col border-4 border-amber-300 overflow-hidden min-h-[90vh] md:min-h-0 md:max-h-[90vh]">
+        
+        <!-- Header del modal mejorado -->
+        <div class="sticky top-0 z-30 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 p-4 md:p-6 border-b border-amber-200 shadow-lg">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-3 md:gap-4">
+              <div class="bg-white/20 p-2 md:p-3 rounded-xl backdrop-blur-sm">
+                <i class="fas fa-plus-circle text-white text-lg md:text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg md:text-2xl font-bold text-white flex items-center gap-2">
+                  @if (formToShow() === 'word') {
+                    <i class="fas fa-book-open text-base md:text-lg"></i>
+                    <span>Nueva Palabra</span>
+                  } @else {
+                    <i class="fas fa-gamepad text-base md:text-lg"></i>
+                    <span>Nuevo Contenido</span>
+                  }
+                </h3>
+                <p class="text-amber-100 text-xs md:text-sm mt-1">
+                  @if (formToShow() === 'word') {
+                    Agregar palabra al diccionario
+                  } @else {
+                    Subir juego o lección interactiva
+                  }
+                </p>
+              </div>
+            </div>
+            
+            <button (click)="closeFormModal()" class="group bg-white/10 hover:bg-red-500 transition-all duration-300 text-white hover:text-white p-2 md:p-3 rounded-xl backdrop-blur-sm border border-white/20 hover:border-red-400 transform hover:scale-110">
+              <i class="fas fa-times text-lg md:text-xl group-hover:rotate-90 transition-transform duration-300"></i>
+            </button>
+          </div>
+          
+          <!-- Indicador de progreso -->
+          <div class="mt-4 flex items-center gap-2">
+            <div class="flex-1 bg-white/20 rounded-full h-1.5">
+              <div class="bg-white h-full rounded-full w-1/3 transition-all duration-300"></div>
+            </div>
+            <span class="text-white/80 text-xs">Paso 1 de 3</span>
+          </div>
+        </div>
+
+        <!-- Contenido del modal con scroll mejorado -->
+        <div class="flex-1 overflow-y-auto bg-gradient-to-br from-orange-50/30 via-white to-amber-50/30 relative">
+          <!-- Elementos decorativos internos -->
+          <div class="absolute top-0 right-0 w-32 md:w-64 h-32 md:h-64 bg-gradient-to-br from-amber-200/10 to-orange-200/10 rounded-full blur-2xl"></div>
+          <div class="absolute bottom-0 left-0 w-24 md:w-48 h-24 md:h-48 bg-gradient-to-tr from-orange-200/10 to-amber-200/10 rounded-full blur-xl"></div>
+          
+          <div class="relative p-4 md:p-6 lg:p-8">
+            <!-- Barra de información superior -->
+            <div class="mb-6 md:mb-8 bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-amber-200/50 shadow-sm">
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3 md:gap-4">
+                  <div class="bg-gradient-to-r from-blue-500 to-sky-500 p-2 md:p-3 rounded-lg shadow-sm">
+                    <i class="fas fa-info-circle text-white text-sm md:text-base"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Información importante</h4>
+                    <p class="text-gray-600 text-xs md:text-sm">
+                      @if (formToShow() === 'word') {
+                        Complete todos los campos para agregar la palabra
+                      } @else {
+                        Suba archivos en formato PDF, video o imagen
+                      }
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 bg-gradient-to-r from-emerald-50 to-green-50 px-3 md:px-4 py-2 rounded-lg border border-emerald-200">
+                  <i class="fas fa-shield-check text-emerald-600 text-xs md:text-sm"></i>
+                  <span class="text-emerald-700 font-medium text-xs md:text-sm">Seguro</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contenedor del formulario con diseño mejorado -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-lg border border-amber-100/50 overflow-hidden">
+              <!-- Header del formulario -->
+              <div class="bg-gradient-to-r from-gray-50 to-amber-50/30 p-4 md:p-6 border-b border-amber-100">
+                <div class="flex items-center gap-3 md:gap-4">
+                  <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 md:p-3 rounded-lg shadow-sm">
+                    @if (formToShow() === 'word') {
+                      <i class="fas fa-edit text-white text-sm md:text-base"></i>
+                    } @else {
+                      <i class="fas fa-upload text-white text-sm md:text-base"></i>
+                    }
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-gray-800 text-base md:text-lg">
+                      @if (formToShow() === 'word') {
+                        Formulario de Palabra
+                      } @else {
+                        Formulario de Contenido
+                      }
+                    </h5>
+                    <p class="text-gray-600 text-xs md:text-sm">Rellene los campos requeridos</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Área del formulario -->
+              <div class="p-4 md:p-6 lg:p-8 max-h-[60vh] md:max-h-[50vh] overflow-y-auto">
+                @if (formToShow() === 'word') {
+                  <app-word-form></app-word-form>
+                } @else if (formToShow() === 'content') {
+                  <app-content-form></app-content-form>
+                }
+              </div>
+            </div>
+
+            <!-- Footer del modal con acciones -->
+            <div class="mt-6 md:mt-8 bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-amber-200/50 shadow-sm">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                  <i class="fas fa-lock text-amber-600"></i>
+                  <span>Todos los datos están protegidos</span>
+                </div>
+                <div class="flex gap-2 md:gap-3 w-full sm:w-auto">
+                  <button (click)="closeFormModal()" class="flex-1 sm:flex-none px-4 md:px-6 py-2 md:py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg md:rounded-xl transition-all duration-300 text-sm md:text-base">
+                    <i class="fas fa-times mr-2"></i>Cancelar
+                  </button>
+                  <button class="flex-1 sm:flex-none px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-lg md:rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+                    <i class="fas fa-paper-plane mr-2"></i>Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Filtros y controles superiores -->
+  <div class="mb-6 md:mb-8 relative z-10 px-4">
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-6 border border-orange-100/50 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-orange-50/20 to-amber-50/20"></div>
+      <div class="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 md:gap-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 w-full lg:w-auto">
+          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-2 md:p-3 rounded-xl shadow-lg">
+            <i class="fas fa-filter text-white text-sm md:text-lg"></i>
+          </div>
+          <div class="flex flex-wrap gap-2 md:gap-3 w-full sm:w-auto">
+            <div class="flex flex-wrap gap-2 md:gap-3 w-full sm:w-auto">
+            <button (click)="setFilter('all')" [ngClass]="{'bg-gradient-to-r from-blue-500 to-sky-500 text-white': statusFilter() === 'all', 'bg-white/60 text-gray-700': statusFilter() !== 'all'}" class="px-3 md:px-6 py-2 md:py-3 font-semibold rounded-lg md:rounded-xl shadow-lg hover:from-blue-600 hover:to-sky-600 transition-all duration-300 transform hover:scale-105 text-xs md:text-base">
+              <i class="fas fa-list-alt mr-1 md:mr-2"></i>Todas
+            </button>
+            <button (click)="setFilter('pending')" [ngClass]="{'bg-gradient-to-r from-amber-500 to-orange-500 text-white': statusFilter() === 'pending', 'bg-white/60 text-gray-700': statusFilter() !== 'pending'}" class="px-3 md:px-6 py-2 md:py-3 font-semibold rounded-lg md:rounded-xl shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 text-xs md:text-base">
+              <i class="fas fa-clock mr-1 md:mr-2"></i>Pendientes
+            </button>
+            <button (click)="setFilter('approved')" [ngClass]="{'bg-gradient-to-r from-emerald-500 to-green-500 text-white': statusFilter() === 'approved', 'bg-white/60 text-gray-700': statusFilter() !== 'approved'}" class="px-3 md:px-6 py-2 md:py-3 font-semibold rounded-lg md:rounded-xl shadow-md hover:bg-white/80 border border-gray-200 transition-all duration-300 transform hover:scale-105 text-xs md:text-base">
+              <i class="fas fa-check mr-1 md:mr-2"></i>Aprobadas
+            </button>
+            <button (click)="setFilter('rejected')" [ngClass]="{'bg-gradient-to-r from-red-500 to-rose-500 text-white': statusFilter() === 'rejected', 'bg-white/60 text-gray-700': statusFilter() !== 'rejected'}" class="px-3 md:px-6 py-2 md:py-3 font-semibold rounded-lg md:rounded-xl shadow-md hover:bg-white/80 border border-gray-200 transition-all duration-300 transform hover:scale-105 text-xs md:text-base">
+              <i class="fas fa-times mr-1 md:mr-2"></i>Rechazadas
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+          <div class="relative flex-1 sm:flex-none">
+            <input type="search" placeholder="Buscar contribuciones..." class="pl-10 md:pl-12 pr-4 py-2 md:py-3 bg-white/80 rounded-lg md:rounded-xl border border-orange-200 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none w-full sm:w-48 md:w-64 shadow-sm text-sm md:text-base" (input)="searchTerm.set($any($event.target).value)">
+            <i class="fas fa-search absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm md:text-base"></i>
+          </div>
+          
+          <button class="p-2 md:p-3 bg-gradient-to-r from-blue-500 to-sky-500 text-white rounded-lg md:rounded-xl shadow-lg hover:from-blue-600 hover:to-sky-600 transition-all duration-300 transform hover:scale-105">
+            <i class="fas fa-sync-alt text-sm md:text-base"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla principal mejorada con mejor responsivo -->
+  <div class="bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border border-orange-100/50 relative z-10 mx-4">
+    <div class="absolute inset-0 bg-gradient-to-br from-orange-50/30 via-transparent to-amber-50/30"></div>
+    
+    <!-- Header de la tabla con diseño premium -->
+    <div class="bg-gradient-to-r from-amber-500/90 via-orange-500/90 to-amber-500/90 backdrop-blur-sm px-4 md:px-8 py-4 md:py-6 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-white/10"></div>
+      <div class="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3 md:gap-4">
+          <div class="bg-white/20 p-2 md:p-3 rounded-xl backdrop-blur-sm">
+            <i class="fas fa-table text-white text-lg md:text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-lg md:text-2xl font-bold text-white">Contribuciones Recientes</h2>
+            <p class="text-amber-100 text-sm md:text-base">Gestiona y modera el contenido de la comunidad</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+          <div class="bg-white/20 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg text-white font-medium text-sm md:text-base">
+            <i class="fas fa-list mr-1 md:mr-2"></i>
+            Total: {{ totalCount() }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla responsiva -->
+    <div class="overflow-x-auto">
+      <div class="min-w-full lg:min-w-0">
+        <!-- Vista de escritorio -->
+        <div class="hidden md:block">
+          <table class="min-w-full">
+            <thead class="bg-gradient-to-r from-amber-50/90 to-orange-50/90 backdrop-blur-sm sticky top-0 z-20">
+              <tr class="border-b border-orange-200/50">
+                <th scope="col" class="px-4 md:px-8 py-4 md:py-6 text-left">
+                  <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold text-amber-800 uppercase tracking-wider">
+                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-1.5 md:p-2 rounded-lg shadow-sm">
+                      <i class="fas fa-book text-white text-xs md:text-sm"></i>
+                    </div>
+                    <div>
+                      <div>Título</div>
+                      <div class="text-xs normal-case text-gray-500 font-normal">Información principal</div>
+                    </div>
+                  </div>
+                </th>
+                <th scope="col" class="px-4 md:px-8 py-4 md:py-6 text-left">
+                  <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold text-amber-800 uppercase tracking-wider">
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-1.5 md:p-2 rounded-lg shadow-sm">
+                      <i class="fas fa-tag text-white text-xs md:text-sm"></i>
+                    </div>
+                    <div>
+                      <div>Categoría</div>
+                      <div class="text-xs normal-case text-gray-500 font-normal">Clasificación</div>
+                    </div>
+                  </div>
+                </th>
+                <th scope="col" class="px-4 md:px-8 py-4 md:py-6 text-left">
+                  <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold text-amber-800 uppercase tracking-wider">
+                    <div class="bg-gradient-to-r from-violet-500 to-purple-500 p-1.5 md:p-2 rounded-lg shadow-sm">
+                      <i class="fas fa-file-alt text-white text-xs md:text-sm"></i>
+                    </div>
+                    <div>
+                      <div>Tipo</div>
+                      <div class="text-xs normal-case text-gray-500 font-normal">Formato</div>
+                    </div>
+                  </div>
+                </th>
+                <th scope="col" class="px-4 md:px-8 py-4 md:py-6 text-left">
+                  <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold text-amber-800 uppercase tracking-wider">
+                    <div class="bg-gradient-to-r from-blue-500 to-sky-500 p-1.5 md:p-2 rounded-lg shadow-sm">
+                      <i class="fas fa-check-circle text-white text-xs md:text-sm"></i>
+                    </div>
+                    <div>
+                      <div>Estado</div>
+                      <div class="text-xs normal-case text-gray-500 font-normal">Moderación</div>
+                    </div>
+                  </div>
+                </th>
+                <th scope="col" class="px-4 md:px-8 py-4 md:py-6 text-left">
+                  <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-bold text-amber-800 uppercase tracking-wider">
+                    <div class="bg-gradient-to-r from-gray-500 to-gray-600 p-1.5 md:p-2 rounded-lg shadow-sm">
+                      <i class="fas fa-cogs text-white text-xs md:text-sm"></i>
+                    </div>
+                    <div>
+                      <div>Acciones</div>
+                      <div class="text-xs normal-case text-gray-500 font-normal">Herramientas</div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white/60 backdrop-blur-sm divide-y divide-orange-100/30">
+              @for (item of filteredContributions(); track item.id) {
+                <tr class="hover:bg-gradient-to-r hover:from-amber-50/80 hover:to-orange-50/80 transition-all duration-500 group relative">
+                  <td class="px-4 md:px-8 py-4 md:py-8 whitespace-nowrap">
+                    <div class="flex items-start gap-3 md:gap-4">
+                      <div class="relative">
+                        <div class="bg-gradient-to-br from-amber-500 to-orange-500 p-2 md:p-3 rounded-2xl shadow-lg group-hover:shadow-amber-200 transition-all duration-300 group-hover:scale-110">
+                          <i class="fas fa-scroll text-white text-sm md:text-lg"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-3 md:w-4 h-3 md:h-4 bg-gradient-to-r from-emerald-400 to-green-400 rounded-full border-2 border-white shadow-sm"></div>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-sm md:text-lg font-bold text-gray-900 group-hover:text-amber-700 transition-colors duration-300 mb-1">
+                          {{ item.title }}
+                        </div>
+                        @if (item.shuarTitle) {
+                          <div class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 px-2 md:px-3 py-1 rounded-lg border border-orange-200 mb-2">
+                            <i class="fas fa-language text-orange-600 text-xs"></i>
+                            <span class="text-xs md:text-sm text-orange-800 font-medium italic">{{ item.shuarTitle }}</span>
+                          </div>
+                        }
+                        <div class="flex items-center gap-2 text-xs md:text-sm text-gray-500">
+                          <i class="fas fa-clock"></i>
+                          <span>{{ item.submissionDate.toDate() | date:'short' }}</span>
+                          <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                          <span>Por: {{ item.contributor || 'Anónimo' }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 md:px-8 py-4 md:py-8 whitespace-nowrap">
+                    <div class="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-200 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <i class="fas fa-tag text-emerald-600 text-sm"></i>
+                      <span class="text-xs md:text-sm font-semibold text-emerald-700">
+                        {{ getCategoryDisplay(item.category) }}
+                      </span>
+                    </div>
+                  </td>
+                  
+                  <td class="px-4 md:px-8 py-4 md:py-8 whitespace-nowrap">
+                    <div class="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-violet-50 to-purple-50 rounded-xl border border-violet-200 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <i class="{{ getContentTypeIcon(item.contentType) }} text-violet-600 text-sm"></i>
+                      <span class="text-xs md:text-sm font-semibold text-violet-700">
+                        {{ getContentTypeDisplay(item.contentType) }}
+                      </span>
+                    </div>
+                  </td>
+                  
+                  <td class="px-4 md:px-8 py-4 md:py-8 whitespace-nowrap">
+                    <div class="inline-flex items-center gap-2 md:gap-3 px-3 md:px-5 py-2 md:py-3 rounded-2xl shadow-lg border-2 font-bold text-xs md:text-sm transition-all duration-300 group-hover:scale-105"
+                      [ngClass]="{
+                        'bg-gradient-to-r from-yellow-100 via-amber-100 to-yellow-100 text-amber-800 border-amber-300 shadow-amber-100': item.moderation.status === 'pending',
+                        'bg-gradient-to-r from-emerald-100 via-green-100 to-emerald-100 text-green-800 border-green-300 shadow-green-100': item.moderation.status === 'approved',
+                        'bg-gradient-to-r from-red-100 via-rose-100 to-red-100 text-red-800 border-red-300 shadow-red-100': item.moderation.status === 'rejected'
+                      }">
+                      <div class="relative">
+                        <i class="text-sm md:text-lg" 
+                          [ngClass]="{
+                            'fas fa-hourglass-half animate-spin': item.moderation.status === 'pending',
+                            'fas fa-check-circle': item.moderation.status === 'approved',
+                            'fas fa-times-circle': item.moderation.status === 'rejected'
+                          }"></i>
+                        <div class="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-ping"
+                          [ngClass]="{
+                            'bg-amber-400': item.moderation.status === 'pending',
+                            'bg-green-400': item.moderation.status === 'approved',
+                            'bg-red-400': item.moderation.status === 'rejected'
+                          }"></div>
+                      </div>
+                      <span class="uppercase tracking-wider">{{ item.moderation.status }}</span>
+                    </div>
+                  </td>
+                  
+                  <td class="px-4 md:px-8 py-4 md:py-8 whitespace-nowrap">
+                    <div class="flex flex-wrap gap-2 md:gap-3">
+                      @if (item.moderation.status === 'pending') {
+                        <button (click)="approveContribution(item.id)" 
+                          class="group/btn relative overflow-hidden px-3 md:px-5 py-2 md:py-3 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-500 text-white font-bold rounded-xl shadow-xl hover:from-emerald-600 hover:via-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-emerald-200 text-xs md:text-sm">
+                          <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-white/30 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                          <div class="relative flex items-center gap-1 md:gap-2">
+                            <i class="fas fa-check text-sm md:text-lg group-hover/btn:scale-125 group-hover/btn:rotate-12 transition-all duration-300"></i>
+                            <span class="hidden sm:inline">Aprobar</span>
+                          </div>
+                        </button>
+                        <button (click)="rejectContribution(item.id)"
+                          class="group/btn relative overflow-hidden px-3 md:px-5 py-2 md:py-3 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 text-white font-bold rounded-xl shadow-xl hover:from-red-600 hover:via-rose-600 hover:to-red-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-red-200 text-xs md:text-sm">
+                           <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-white/30 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                           <div class="relative flex items-center gap-1 md:gap-2">
+                            <i class="fas fa-times text-sm md:text-lg group-hover/btn:scale-125 group-hover/btn:rotate-12 transition-all duration-300"></i>
+                            <span class="hidden sm:inline">Rechazar</span>
+                          </div>
+                        </button>
+                      }
+                      
+                      <button (click)="openModal(item.fileUrl)" 
+                        class="group/btn relative overflow-hidden px-3 md:px-5 py-2 md:py-3 bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500 text-white font-bold rounded-xl shadow-xl hover:from-blue-600 hover:via-sky-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-blue-200 text-xs md:text-sm">
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-white/30 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                        <div class="relative flex items-center gap-1 md:gap-2">
+                          <i class="fas fa-eye text-sm md:text-lg group-hover/btn:scale-125 transition-all duration-300"></i>
+                          <span class="hidden sm:inline">Ver</span>
+                        </div>
+                      </button>
+                      
+                      <button (click)="deleteContribution(item.id)" 
+                        class="group/btn relative overflow-hidden px-3 md:px-5 py-2 md:py-3 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 text-white font-bold rounded-xl shadow-xl hover:from-red-600 hover:via-rose-600 hover:to-red-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-red-200 text-xs md:text-sm">
+                          <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-white/30 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                          <div class="relative flex items-center gap-1 md:gap-2">
+                            <i class="fas fa-trash-alt text-sm md:text-lg group-hover/btn:scale-125 group-hover/btn:rotate-12 transition-all duration-300"></i>
+                            <span class="hidden sm:inline">Eliminar</span>
+                          </div>
+                        </button>
+                    </div>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="5" class="text-center py-20">
+                    <div class="flex flex-col items-center max-w-md mx-auto">
+                      <!-- Animación de caja vacía -->
+                      <div class="relative mb-8">
+                        <div class="absolute inset-0 bg-gradient-to-r from-amber-200/30 to-orange-200/30 rounded-full blur-2xl animate-pulse"></div>
+                        <div class="relative bg-gradient-to-br from-amber-100 via-orange-100 to-amber-100 p-8 md:p-12 rounded-3xl border-2 border-orange-200 shadow-2xl">
+                          <div class="relative">
+                            <i class="fas fa-box-open text-4xl md:text-7xl text-amber-600 animate-bounce"></i>
+                            <div class="absolute top-0 right-0 w-4 md:w-6 h-4 md:h-6 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full animate-ping"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">No hay contribuciones disponibles</h3>
+                      <p class="text-gray-600 text-sm md:text-lg mb-6 leading-relaxed px-4">
+                        Las nuevas contribuciones de la comunidad aparecerán aquí para su moderación
+                      </p>
+                      
+                      <!-- Botón de acción -->
+                      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
+                        <button class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+                          <i class="fas fa-sync-alt mr-2"></i>
+                          Actualizar
+                        </button>
+                        <button class="px-4 md:px-6 py-2 md:py-3 bg-white/80 text-gray-700 font-semibold rounded-xl shadow-lg hover:bg-white border border-gray-200 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+                          <i class="fas fa-plus mr-2"></i>
+                          Ver histórico
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Vista móvil -->
+        <div class="block md:hidden">
+          <div class="space-y-4 p-4">
+            @for (item of filteredContributions(); track item.id) {
+              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-100/50 overflow-hidden hover:shadow-xl transition-all duration-300">
+                <!-- Header de la tarjeta -->
+                <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 border-b border-orange-100">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-start gap-3 flex-1">
+                      <div class="bg-gradient-to-br from-amber-500 to-orange-500 p-2 rounded-xl shadow-sm">
+                        <i class="fas fa-scroll text-white text-sm"></i>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-gray-900 text-sm truncate mb-1">{{ item.title }}</h4>
+                        @if (item.shuarTitle) {
+                          <div class="inline-flex items-center gap-1 bg-orange-100 px-2 py-1 rounded-md border border-orange-200 mb-2">
+                            <i class="fas fa-language text-orange-600 text-xs"></i>
+                            <span class="text-xs text-orange-800 font-medium">{{ item.shuarTitle }}</span>
+                          </div>
+                        }
+                        <div class="text-xs text-gray-500">
+                          Por: {{ item.contributor || 'Anónimo' }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl shadow-sm border-2 font-bold text-xs"
+                      [ngClass]="{
+                        'bg-gradient-to-r from-yellow-100 to-amber-100 text-amber-800 border-amber-300': item.moderation.status === 'pending',
+                        'bg-gradient-to-r from-emerald-100 to-green-100 text-green-800 border-green-300': item.moderation.status === 'approved',
+                        'bg-gradient-to-r from-red-100 to-rose-100 text-red-800 border-red-300': item.moderation.status === 'rejected'
+                      }">
+                      <i class="text-sm" 
+                        [ngClass]="{
+                          'fas fa-hourglass-half': item.moderation.status === 'pending',
+                          'fas fa-check-circle': item.moderation.status === 'approved',
+                          'fas fa-times-circle': item.moderation.status === 'rejected'
+                        }"></i>
+                      <span class="uppercase">{{ item.moderation.status }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Contenido de la tarjeta -->
+                <div class="p-4">
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-lg border border-emerald-200">
+                      <i class="fas fa-tag text-emerald-600 text-xs"></i>
+                      <span class="text-xs font-semibold text-emerald-700">{{ getCategoryDisplay(item.category) }}</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-50 rounded-lg border border-violet-200">
+                      <i class="{{ getContentTypeIcon(item.contentType) }} text-violet-600 text-xs"></i>
+                      <span class="text-xs font-semibold text-violet-700">{{ getContentTypeDisplay(item.contentType) }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Fecha -->
+                  <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                    <i class="fas fa-clock"></i>
+                    <span>{{ item.submissionDate.toDate() | date:'short' }}</span>
+                  </div>
+
+                  <!-- Botones de acción -->
+                  <div class="flex flex-wrap gap-2">
+                    @if (item.moderation.status === 'pending') {
+                      <button (click)="approveContribution(item.id)" 
+                        class="flex-1 px-3 py-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-xs">
+                        <i class="fas fa-check mr-1"></i>Aprobar
+                      </button>
+                      <button (click)="rejectContribution(item.id)"
+                        class="flex-1 px-3 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-xs">
+                        <i class="fas fa-times mr-1"></i>Rechazar
+                      </button>
+                    }
+                    <button (click)="openModal(item.fileUrl)" 
+                      class="px-3 py-2 bg-gradient-to-r from-blue-500 to-sky-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-xs">
+                      <i class="fas fa-eye mr-1"></i>Ver
+                    </button>
+                    <button (click)="deleteContribution(item.id)" 
+                      class="px-3 py-2 bg-gradient-to-r from-red-500 to-rose-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-xs">
+                      <i class="fas fa-trash-alt mr-1"></i>Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            } @empty {
+              <div class="text-center py-16">
+                <div class="flex flex-col items-center max-w-sm mx-auto">
+                  <div class="relative mb-6">
+                    <div class="bg-gradient-to-br from-amber-100 to-orange-100 p-8 rounded-3xl border-2 border-orange-200 shadow-xl">
+                      <i class="fas fa-box-open text-5xl text-amber-600 animate-bounce"></i>
+                    </div>
+                  </div>
+                  <h3 class="text-lg font-bold text-gray-800 mb-2">No hay contribuciones</h3>
+                  <p class="text-gray-600 text-sm mb-6 leading-.relaxed text-center px-4">
+                    Las nuevas contribuciones aparecerán aquí
+                  </p>
+                  <div class="space-y-2 w-full">
+                    <button class="w-full px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 text-sm">
+                      <i class="fas fa-sync-alt mr-2"></i>Actualizar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  <!-- Footer con información adicional -->
+  <div class="mt-8 md:mt-12 text-center relative z-10 px-4">
+    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-orange-100/50 max-w-4xl mx-auto">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-gray-600">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-shield-check text-emerald-600"></i>
+          <span>Sistema de moderación avanzado</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-clock text-amber-600"></i>
+          <span>Actualización en tiempo real</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-users text-blue-600"></i>
+          <span>Gestión colaborativa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal iframe mejorado -->
+  @if (isModalOpen()) {
+    <div class="fixed inset-0 bg-black/80 flex items-start md:items-center justify-center z-50 p-2 md:p-4 backdrop-blur-sm overflow-y-auto">
+      <div class="bg-white rounded-2xl md:rounded-3xl shadow-2xl w-full max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl my-4 md:my-0 relative flex flex-col overflow-hidden border-4 border-amber-300 min-h-[90vh] md:min-h-0 md:h-[85vh]">
+        
+        <!-- Header del modal de visualización -->
+        <div class="sticky top-0 z-30 bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500 p-4 md:p-6 border-b border-blue-200 shadow-lg">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-3 md:gap-4">
+              <div class="bg-white/20 p-2 md:p-3 rounded-xl backdrop-blur-sm">
+                <i class="fas fa-eye text-white text-lg md:text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg md:text-2xl font-bold text-white">Visualizador de Contenido</h3>
+                <p class="text-blue-100 text-xs md:text-sm mt-1">Vista previa del archivo subido</p>
+              </div>
+            </div>
+            
+            <button (click)="closeModal()" class="group bg-white/10 hover:bg-red-500 transition-all duration-300 text-white hover:text-white p-2 md:p-3 rounded-xl backdrop-blur-sm border border-white/20 hover:border-red-400 transform hover:scale-110">
+              <i class="fas fa-times text-lg md:text-xl group-hover:rotate-90 transition-transform duration-300"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="flex-1 bg-gray-100 relative overflow-hidden">
+          @if (youtubeVideoId()) {
+            <div class="w-full h-full flex items-center justify-center bg-black">
+              <youtube-player [videoId]="youtubeVideoId()!" width="100%" height="100%"></youtube-player>
+            </div>
+          } @else if (selectedFileUrl()) {
+            <iframe [src]="selectedFileUrl()!" class="w-full h-full border-0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          } @else {
+            <div class="flex items-center justify-center h-full">
+              <div class="text-center">
+                <i class="fas fa-file-alt text-6xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600">No se puede mostrar el contenido</p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Footer del modal -->
+        <div class="bg-gray-50 p-3 md:p-4 border-t border-gray-200">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+              <i class="fas fa-info-circle text-blue-500"></i>
+              <span>Contenido cargado exitosamente</span>
+            </div>
+            <button (click)="closeModal()" class="px-3 md:px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition-all duration-300 text-xs md:text-sm font-medium">
+              <i class="fas fa-times mr-1 md:mr-2"></i>Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

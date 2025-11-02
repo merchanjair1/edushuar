@@ -1,0 +1,291 @@
+<div class="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 min-h-screen">
+  <div class="relative py-20 px-8 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-amber-900/90 via-orange-800/85 to-yellow-700/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-100/10 to-transparent blur-3xl"></div>
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center relative z-10">
+      <div class="text-center md:text-center md:w-1/2 mb-10 md:mb-0 flex flex-col items-center">
+        <h1 class="text-6xl md:text-7xl font-extrabold leading-tight text-white mb-6 drop-shadow-lg">
+          Bienvenidos a 
+          <span class="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
+            EduShuar
+          </span>
+        </h1>
+        <p class="mt-6 text-xl max-w-2xl text-white/95 leading-relaxed font-medium tracking-wide drop-shadow-sm">
+          Preservando nuestra lengua y cultura ancestral. Explora la riqueza de la cultura Shuar a través de nuestras lecciones interactivas, cuentos tradicionales y juegos educativos. Sumérgete en un viaje de aprendizaje y descubrimiento, y fortalece tu conexión con nuestras raíces.
+        </p>
+        <div class="mt-10 flex justify-center space-x-6">
+          <button routerLink="/lecciones" class="group relative overflow-hidden transition duration-300 hover:scale-105 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold py-4 px-8 rounded-2xl flex items-center shadow-2xl hover:shadow-amber-300/50 transform">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative flex items-center gap-3">
+              <i class="fas fa-play text-xl group-hover:scale-110 transition-transform"></i>
+              <span class="text-xl">Comenzar</span>
+            </div>
+          </button>
+          <button routerLink="/dictionary" class="group relative overflow-hidden transition duration-300 hover:scale-105 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold py-4 px-8 rounded-2xl flex items-center shadow-2xl hover:shadow-emerald-300/50 transform">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative flex items-center gap-3">
+              <i class="fas fa-search text-xl group-hover:scale-110 transition-transform"></i>
+              <span class="text-xl">Explorar</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center md:justify-center">
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full blur-xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+          <img src="img/inicio.jpg" alt="Imagen Cultural Shuar" class="relative w-72 h-72 md:w-96 md:h-96 rounded-full object-cover shadow-2xl border-4 border-white/80 group-hover:scale-105 transition-transform duration-500">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de progreso -->
+  <div class="container mx-auto py-10 px-8">
+    <header class="text-center mb-16 relative">
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-100/30 to-transparent blur-2xl"></div>
+      <div class="relative">
+        <h2 class="text-5xl font-extrabold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent mb-4 p-2">
+          Tu Progreso
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full"></div>
+      </div>
+    </header>
+
+    <div class="pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Tarjeta 1 -->
+      <div class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative">
+          <h3 class="text-6xl font-extrabold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-4">48</h3>
+          <p class="text-gray-700 text-lg font-semibold mb-6 group-hover:text-amber-700 transition-colors duration-300">Palabras Aprendidas</p>
+          <div class="w-full bg-gradient-to-r from-orange-100 to-amber-100 rounded-full h-3 shadow-inner">
+            <div class="h-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 shadow-lg transition-all duration-1000 ease-out" style="width: 60%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative">
+          <h3 class="text-6xl font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">8</h3>
+          <p class="text-gray-700 text-lg font-semibold mb-6 group-hover:text-emerald-700 transition-colors duration-300">Cuentos Leídos</p>
+          <div class="w-full bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full h-3 shadow-inner">
+            <div class="h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg transition-all duration-1000 ease-out" style="width: 80%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative">
+          <h3 class="text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">5</h3>
+          <p class="text-gray-700 text-lg font-semibold mb-6 group-hover:text-blue-700 transition-colors duration-300">Lecciones Completadas</p>
+          <div class="w-full bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full h-3 shadow-inner">
+            <div class="h-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 shadow-lg transition-all duration-1000 ease-out" style="width: 50%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative">
+          <h3 class="text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent mb-4">12</h3>
+          <p class="text-gray-700 text-lg font-semibold mb-6 group-hover:text-purple-700 transition-colors duration-300">Juegos Jugados</p>
+          <div class="w-full bg-gradient-to-r from-purple-100 to-violet-100 rounded-full h-3 shadow-inner">
+            <div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 shadow-lg transition-all duration-1000 ease-out" style="width: 75%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de acceso rápido -->
+  <div class="container mx-auto px-8">
+    <header class="text-center mb-16 relative">
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-100/30 to-transparent blur-2xl"></div>
+      <div class="relative">
+        <h2 class="text-5xl font-extrabold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-900 bg-clip-text text-transparent mb-4 p-2">
+          Acceso Rápido
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full"></div>
+      </div>
+    </header>
+
+    <div class="mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Tarjeta 1 -->
+      <div routerLink="/dictionary" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-4 rounded-2xl shadow-lg group-hover:shadow-amber-200 transition-shadow duration-300">
+              <i class="fas fa-book text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">500+ palabras</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-amber-700 transition-colors duration-300">
+            Diccionario Audiovisual
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Explora palabras en Shuar con audio y ejemplos visuales.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-orange-100 to-amber-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 shadow-lg transition-all duration-1000 ease-out" style="width: 70%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">70% completado</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div routerLink="/stories" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-200 transition-shadow duration-300">
+              <i class="fas fa-book-open text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">100+ cuentos</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-emerald-700 transition-colors duration-300">
+            Cuentos Tradicionales
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Sumérgete en narraciones tradicionales y mitos Shuar.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg transition-all duration-1000 ease-out" style="width: 45%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">45% completado</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div routerLink="/lecciones" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 p-4 rounded-2xl shadow-lg group-hover:shadow-blue-200 transition-shadow duration-300">
+              <i class="fas fa-graduation-cap text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">20+ lecciones</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+            Módulos de Lecciones
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Aprende la lengua Shuar con módulos interactivos.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 shadow-lg transition-all duration-1000 ease-out" style="width: 85%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">85% completado</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div routerLink="/games" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-purple-500 to-violet-500 p-4 rounded-2xl shadow-lg group-hover:shadow-purple-200 transition-shadow duration-300">
+              <i class="fas fa-gamepad text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">15+ juegos</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-purple-700 transition-colors duration-300">
+            Juegos Educativos
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Diviértete y pon a prueba tus conocimientos con juegos educativos.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-purple-100 to-violet-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 shadow-lg transition-all duration-1000 ease-out" style="width: 60%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">60% completado</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5 -->
+      <div routerLink="/contribuir" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-red-500 to-rose-500 p-4 rounded-2xl shadow-lg group-hover:shadow-red-200 transition-shadow duration-300">
+              <i class="fas fa-hand-holding-heart text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">5+ contribuciones</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-red-700 transition-colors duration-300">
+            Contribuciones Comunitarias
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Comparte tu conocimiento y enriquece el patrimonio cultural.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-red-100 to-rose-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-red-500 to-rose-500 shadow-lg transition-all duration-1000 ease-out" style="width: 20%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">20% completado</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6 -->
+      <div routerLink="/biblioteca" class="group bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 border border-orange-100/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="p-8 relative">
+          <div class="flex justify-between items-start mb-6">
+            <div class="bg-gradient-to-r from-green-500 to-emerald-500 p-4 rounded-2xl shadow-lg group-hover:shadow-green-200 transition-shadow duration-300">
+              <i class="fas fa-archive text-white text-2xl"></i>
+            </div>
+            <span class="text-sm text-gray-500 font-medium bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full">200+ recursos</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-700 transition-colors duration-300">
+            Biblioteca Multimedia
+          </h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">
+            Accede a recursos multimedia y documentos históricos.
+          </p>
+          
+          <div class="w-full bg-gradient-to-r from-green-100 to-emerald-100 rounded-full h-3 shadow-inner mb-3">
+            <div class="h-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg transition-all duration-1000 ease-out" style="width: 90%;">
+              <div class="w-full h-full bg-gradient-to-t from-white/20 to-transparent rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-right text-sm text-gray-500 font-medium">90% completado</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
