@@ -28,12 +28,12 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      # 👇 Solo subimos el contenido del build (dist/prueba-proyecto)
+      # 👇 Subimos directamente el contenido del build (sin subcarpeta adicional)
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: angular-dist
-          path: dist/prueba_proyecto
+          path: dist/prueba_proyecto/**
 
   deploy:
     runs-on: ubuntu-latest
@@ -62,7 +62,9 @@ jobs:
           slot-name: 'Production'
           package: angular-dist
 
+
           
+
 
 
 
