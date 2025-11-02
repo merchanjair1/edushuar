@@ -28,12 +28,15 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      # 👇 Subimos directamente el contenido del build (sin subcarpeta adicional)
+      - name: Verify build output
+        run: ls -R dist
+
+      # 👇 Subimos solo el contenido final del build (dist/prueba_proyecto)
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: angular-dist
-          path: dist/prueba_proyecto/**
+          path: dist/prueba_proyecto/
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,6 +50,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: angular-dist
+          path: ./angular-dist
+
+      - name: Verify artifact contents
+        run: ls -R angular-dist
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -60,11 +67,4 @@ jobs:
         with:
           app-name: 'edushua'
           slot-name: 'Production'
-          package: angular-dist
-
-
-          
-
-
-
-
+          package: ./angular-dist
