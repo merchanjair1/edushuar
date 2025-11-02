@@ -31,7 +31,6 @@ jobs:
       - name: Verify build output
         run: ls -R dist
 
-      # 👇 Subimos solo el contenido final del build (dist/prueba_proyecto)
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -53,7 +52,7 @@ jobs:
           path: ./angular-dist
 
       - name: Verify artifact contents
-        run: ls -R angular-dist
+        run: ls -R angular-dist/browser
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -67,4 +66,5 @@ jobs:
         with:
           app-name: 'edushua'
           slot-name: 'Production'
-          package: ./angular-dist
+          package: ./angular-dist/browser
+
